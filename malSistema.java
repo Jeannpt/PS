@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MalSistema { // Corregido: Empieza con Mayúscula
+public class MalSistema {
     static Student[] listaEstudiantes = new Student[5];
     static Course[] listaCursos = new Course[3];
     static int contadorEstudiantes = 0;
@@ -44,7 +44,8 @@ public class MalSistema { // Corregido: Empieza con Mayúscula
         int pos = Integer.parseInt(teclado.nextLine());
         
         Student estudiante = null;
-        for (int i = 0; i <= contadorEstudiantes; i++) {
+        // BUG CORREGIDO: i < contadorEstudiantes (quitamos el =)
+        for (int i = 0; i < contadorEstudiantes; i++) {
             if (i == pos) {
                 estudiante = listaEstudiantes[i];
             }
@@ -54,7 +55,8 @@ public class MalSistema { // Corregido: Empieza con Mayúscula
         String cursoNombre = teclado.nextLine();
         Course cursoEncontrado = null;
         for (int i = 0; i < contadorCursos; i++) {
-            if (listaCursos[i].nombre == cursoNombre) {
+            // BUG CORREGIDO: .equals() en lugar de ==
+            if (listaCursos[i].nombre.equals(cursoNombre)) {
                 cursoEncontrado = listaCursos[i];
             }
         }
